@@ -21,30 +21,42 @@ h1 {
 main {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    width: 80%;
+    width: 70%;
     margin: 1em auto;
     gap: 2em
 }
 
 img {
     width: 100%;
-    height: 300px;
+    height: 250px;
 }
 
 article {
     width: 100%;
+    box-shadow: 0 0 4px black;
 }
 
 article h2 , article p , article div{
     text-align: center;
     margin: 1em 0;
-    padding: auto;
-    height: 5em;
+    height: 5.5em;
+}
+
+article div {
+    font-size: 0.9em;
+}
+
+article h2 {
+    text-transform: uppercase;
+    text-shadow: 0 0 2px;
+    font-size: 0.9em;
 }
 
 article p {
     text-transform: uppercase;
     margin-top: 2em;
+    font-style: italic;
+    height: 2em;
 }
 
 button {
