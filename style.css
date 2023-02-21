@@ -8,9 +8,10 @@
 }
 
 nav {
-    background: rgba(0, 233, 0 , 0.3);
+    background: rgb(0,24,36);
+    background: radial-gradient(circle, rgba(0,24,36,1) 56%, rgba(34,194,141,1) 81%, rgba(0,212,255,1) 100%);
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     margin-bottom: 3em;
 }
@@ -18,12 +19,13 @@ nav {
 nav img {
     width: 30vh;
     height: 20vh;
+    border-radius: 50%;
 }
 
 nav div {
+    color: white;
     display: flex;
     flex-flow: column;
-    margin-right: 5em;
     font-size: 0.9em;
     font-style: italic;
 }
@@ -33,7 +35,7 @@ nav div input , nav div select {
 }
 
 h1 {
-    background-image: url();
+    color: white;
     text-align: center;
     font-size: 3em;
     padding: 1em 0;

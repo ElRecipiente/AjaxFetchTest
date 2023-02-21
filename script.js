@@ -32,8 +32,6 @@ async function myGifUpdate(url) {
     theImg.setAttribute("src", `${data.data[Math.floor(Math.random() * 10)].images.original.url}`)
 }
 
-myGifUpdate("https://api.giphy.com/v1/gifs/search?api_key=1cK5IjzDd0Q0edYKVZZMwhCONAyfoZq9&q=cat&limit=10&offset=0&rating=g&lang=en");
-
 
 //change category
 selectCategory.addEventListener("change", () => {
@@ -79,3 +77,4 @@ searchInput.addEventListener("input", debounce(() => {
 }, 1000))
 
 updateContent("https://newsapi.org/v2/top-headlines?country=fr&sortBy=publishedAt&apiKey=ae4f0f8e31b3431aa4ba2b3e6021248e");
+myGifUpdate("https://api.giphy.com/v1/gifs/search?api_key=1cK5IjzDd0Q0edYKVZZMwhCONAyfoZq9&q=newspaper&limit=10&offset=0&rating=g&lang=en");
