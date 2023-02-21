@@ -12,15 +12,93 @@
 
 <body>
     <nav>
+
+        <a href="index.html"><img src="img/tree.png" alt="logo"></a>
         <h1>Ceci est une Newz.</h1>
-        <ul>
-
-            <li><button onclick="changeLanguage('fr')">Français</button></li>
-            <li><button onclick="changeLanguage('it')">Italian</button></li>
-            <li><button onclick="changeLanguage('jp')">Japan</button></li>
-            <li><button onclick="changeLanguage('de')">Deustch</button></li>
-
-        </ul>
+        <div>
+            <label for="addressCountry">Choose a country</label>
+            <select name="addressCountry" id="language">
+                <option value="FR">France</option>
+                <optgroup label="North America">
+                    <option value="US">United States</option>
+                    <option value="CA">Canada</option>
+                    <option value="MX">Mexico</option>
+                    <option value="CU">Cuba</option>
+                </optgroup>
+                <optgroup label="South America">
+                    <option value="AR">Argentina</option>
+                    <option value="BR">Brazil</option>
+                    <option value="CO">Colombia</option>
+                    <option value="VE">Venezuela</option>
+                </optgroup>
+                <optgroup label="Europe">
+                    <option value="GB">United Kingdom</option>
+                    <option value="AT">Austria</option>
+                    <option value="BE">Belgium</option>
+                    <option value="BG">Bulgaria</option>
+                    <option value="CZ">Czech Republic</option>
+                    <option value="FR">France</option>
+                    <option value="DE">Germany</option>
+                    <option value="GR">Greece</option>
+                    <option value="HU">Hungary</option>
+                    <option value="IT">Italy</option>
+                    <option value="NL">Netherlands</option>
+                    <option value="PL">Poland</option>
+                    <option value="PT">Portugal</option>
+                    <option value="RS">Serbia</option>
+                    <option value="SK">Slovakia</option>
+                    <option value="SI">Slovenia</option>
+                    <option value="ES">Spain</option>
+                    <option value="UA">Ukraine</option>
+                    <option value="IE">Ireland</option>
+                    <option value="LV">Latvia</option>
+                    <option value="LT">Lithuania</option>
+                    <option value="NO">Norway</option>
+                    <option value="SE">Sweden</option>
+                    <option value="CH">Switzerland</option>
+                    <option value="TR">Turkey</option>
+                </optgroup>
+                <optgroup label="Asia">
+                    <option value="CN">China</option>
+                    <option value="HK">Hong Kong</option>
+                    <option value="IN">India</option>
+                    <option value="ID">Indonesia</option>
+                    <option value="IL">Israel</option>
+                    <option value="JP">Japan</option>
+                    <option value="KR">Korea, Republic of</option>
+                    <option value="MY">Malaysia</option>
+                    <option value="RU">Russian Federation</option>
+                    <option value="SA">Saudi Arabia</option>
+                    <option value="SG">Singapore</option>
+                    <option value="SY">Syria</option>
+                    <option value="TW">Taiwan</option>
+                    <option value="TH">Thailand</option>
+                    <option value="AE">United Arab Emirates</option>
+                </optgroup>
+                <optgroup label="Australia / Oceania">
+                    <option value="AU">Australia</option>
+                    <option value="NZ">New Zealand</option>
+                </optgroup>
+                <optgroup label="Africa">
+                    <option value="EG">Egypt</option>
+                    <option value="MA">Morocco</option>
+                    <option value="NG">Nigeria</option>
+                    <option value="ZA">South Africa</option>
+                </optgroup>
+            </select>
+            <span>Select a category</span>
+            <select name="category" id="category">
+                <option value="business">Business</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="general">General</option>
+                <option value="health">Health</option>
+                <option value="science">Science</option>
+                <option value="sports">Sports</option>
+                <option value="technology">Technology</option>
+            </select>
+            <span>Search an article</span>
+            <input id="searchBar" type="text" maxlength="20">
+        </div>
 
     </nav>
     <main>
