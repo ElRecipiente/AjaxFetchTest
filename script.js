@@ -109,7 +109,9 @@ function showArticles() {
         }
     }
 
+}
 
+function showMustGoOn() {
     if (showMore) {
         for (let i = 0; i < data.articles.length; i++) {
 
@@ -120,7 +122,7 @@ function showArticles() {
         <a href="${data.articles[i].url}"><img src="${data.articles[i].urlToImage}" alt="Image Indisponible"></a>`
                 setTimeout(() => {
                     newArticle.style.opacity = "1"
-                }, (i * 200));
+                }, (i * 100));
                 theLastDiv.append(newArticle)
             }
         }
@@ -150,15 +152,13 @@ function showMoreOrLess() {
     if (!showMore) {
         showMore = true;
         theLastDiv.innerHTML = "";
-        theMainDiv.innerHTML = "";
-        showArticles();
+        showMustGoOn();
         showMoreOrLessButton.textContent = "Show Less";
     }
     else {
         showMore = false;
         theLastDiv.innerHTML = "";
-        theMainDiv.innerHTML = "";
-        showArticles();
+        showMustGoOn();
         showMoreOrLessButton.textContent = "Show All";
     }
 }
@@ -178,7 +178,7 @@ selectCategory.addEventListener("change", () => {
     theMainDiv.innerHTML = "";
     showMore = false;
     showMoreOrLessButton.textContent = "Show All";
-    updateContent(`https://newsapi.org/v2/top-headlines?category=${currentCategory}&country=${currentLanguage}&sortBy=publishedAt&apiKey=a5248deeccb74779bd3657617913a0ad`);
+    updateContent(`https://newsapi.org/v2/top-headlines?category=${currentCategory}&country=${currentLanguage}&sortBy=publishedAt&apiKey=21e825da1415461e9ea84507ccbcb84a`);
 })
 
 
@@ -189,7 +189,7 @@ selectLanguage.addEventListener("change", () => {
     theMainDiv.innerHTML = "";
     showMore = false;
     showMoreOrLessButton.textContent = "Show All";
-    updateContent(`https://newsapi.org/v2/top-headlines?category=${currentCategory}&country=${currentLanguage}&sortBy=publishedAt&apiKey=a5248deeccb74779bd3657617913a0ad`);
+    updateContent(`https://newsapi.org/v2/top-headlines?category=${currentCategory}&country=${currentLanguage}&sortBy=publishedAt&apiKey=21e825da1415461e9ea84507ccbcb84a`);
 })
 
 const debounce = (func, wait) => {
@@ -215,8 +215,8 @@ searchInput.addEventListener("input", debounce(() => {
     currentLanguage = selectLanguage.value;
     currentCategory = selectCategory.value;
     theMainDiv.innerHTML = "";
-    updateContent(`https://newsapi.org/v2/top-headlines?category=${currentCategory}&country=${currentLanguage}&sortBy=publishedAt&apiKey=a5248deeccb74779bd3657617913a0ad&q=${filter}`);
+    updateContent(`https://newsapi.org/v2/top-headlines?category=${currentCategory}&country=${currentLanguage}&sortBy=publishedAt&apiKey=21e825da1415461e9ea84507ccbcb84a&q=${filter}`);
 }, 1000))
 
-updateContent("https://newsapi.org/v2/top-headlines?country=fr&sortBy=publishedAt&apiKey=a5248deeccb74779bd3657617913a0ad");
+updateContent("https://newsapi.org/v2/top-headlines?country=fr&sortBy=publishedAt&apiKey=21e825da1415461e9ea84507ccbcb84a");
 myGifUpdate("https://api.giphy.com/v1/gifs/search?api_key=1cK5IjzDd0Q0edYKVZZMwhCONAyfoZq9&q=newspaper&limit=10&offset=0&rating=g&lang=en");
