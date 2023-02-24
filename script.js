@@ -117,7 +117,7 @@ selectCategory.addEventListener("change", () => {
     theMainDiv.innerHTML = "";
     showMore = false;
     showMoreOrLessButton.textContent = "Show All";
-    updateContent(`https://newsapi.org/v2/top-headlines?category=${currentCategory}&country=${currentLanguage}&sortBy=publishedAt&apiKey=21e825da1415461e9ea84507ccbcb84a`);
+    updateContent(`https://newsapi.org/v2/top-headlines?category=${currentCategory}&country=${currentLanguage}&sortBy=publishedAt&apiKey=c80cfc2928404db29d71bf9af9cdc196`);
 })
 
 
@@ -128,7 +128,7 @@ selectLanguage.addEventListener("change", () => {
     theMainDiv.innerHTML = "";
     showMore = false;
     showMoreOrLessButton.textContent = "Show All";
-    updateContent(`https://newsapi.org/v2/top-headlines?category=${currentCategory}&country=${currentLanguage}&sortBy=publishedAt&apiKey=21e825da1415461e9ea84507ccbcb84a`);
+    updateContent(`https://newsapi.org/v2/top-headlines?category=${currentCategory}&country=${currentLanguage}&sortBy=publishedAt&apiKey=c80cfc2928404db29d71bf9af9cdc196`);
 })
 
 const debounce = (func, wait) => {
@@ -145,21 +145,24 @@ const debounce = (func, wait) => {
     };
 };
 
-let searchInput = document.querySelector("#searchBar");
+// let searchInput = document.querySelector("#searchBar");
 
-//filter on searchBar
-searchInput.addEventListener("input", debounce(() => {
-    searchBarNeedAReset = false;
-    let filter = searchInput.value;
-    currentLanguage = selectLanguage.value;
-    currentCategory = selectCategory.value;
-    theMainDiv.innerHTML = "";
-    updateContent(`https://newsapi.org/v2/top-headlines?category=${currentCategory}&country=${currentLanguage}&sortBy=publishedAt&apiKey=21e825da1415461e9ea84507ccbcb84a&q=${filter}`);
-    if (theMainDiv.innerHTML == "") {
-        theMainDiv.innerHTML = `<img src="img/404.jpg" alt="Pas d'articles disponibles avec cette recherche.">`
-        searchBarNeedAReset = true;
-    }
-}, 1000))
+// //filter on searchBar
+// searchInput.addEventListener("input", debounce(() => {
+//     searchBarNeedAReset = false;
+//     let filter = searchInput.value
+//     currentLanguage = selectLanguage.value;
+//     currentCategory = selectCategory.value;
+//     theMainDiv.innerHTML = "";
 
-updateContent("https://newsapi.org/v2/top-headlines?country=fr&sortBy=publishedAt&apiKey=21e825da1415461e9ea84507ccbcb84a");
+//     updateContent(`https://newsapi.org/v2/top-headlines?category=${currentCategory}&country=${currentLanguage}&sortBy=publishedAt&apiKey=c80cfc2928404db29d71bf9af9cdc196&q=${filter}`);
+
+
+//     if (theMainDiv.innerHTML == "") {
+//         theMainDiv.innerHTML = `<img src="img/404.jpg" alt="Pas d'articles disponibles avec cette recherche.">`
+//         searchBarNeedAReset = true;
+//     }
+// }, 1000))
+
+updateContent("https://newsapi.org/v2/top-headlines?country=fr&sortBy=publishedAt&apiKey=c80cfc2928404db29d71bf9af9cdc196");
 myGifUpdate("https://api.giphy.com/v1/gifs/search?api_key=1cK5IjzDd0Q0edYKVZZMwhCONAyfoZq9&q=newspaper&limit=10&offset=0&rating=g&lang=en");
