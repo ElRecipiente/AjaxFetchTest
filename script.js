@@ -8,107 +8,46 @@ let theImg = document.querySelector("nav a img")
 let showMoreOrLessButton = document.getElementById("showButton");
 let data;
 let showMore = false;
-let whatIsShow = 0;
-let maxLength;
+let whatIsShown = 0;
+let maxShownArticles = 10;
+let maxLength = whatIsShown + 3;
 let arrowButtons = document.querySelectorAll("main button");
+let searchBarNeedAReset = false;
 
 async function updateContent(url) {
     let response = await fetch(url);
     data = await response.json();
     console.log(data);
-    showArticles();
+    for (let i = 0; i < data.articles.length; i++) {
+        if (data.articles[i].urlToImage == null) {
+            data.articles.splice(i, 1);
+        }
+    }
+    showArticles(whatIsShown);
 }
 
-function showArticles() {
+function showArticles(i) {
 
-    if (whatIsShow == 0) {
-        maxLength = 3;
-        for (let i = 0; i < maxLength; i++) {
-
-            if (data.articles[i].urlToImage == null) {
-                maxLength = maxLength + 1;
-            }
-
-            else if (data.articles[i].urlToImage != null) {
-                let newArticle = document.createElement("article")
-                newArticle.innerHTML = `<h2>${data.articles[i].title}</h2>
-        <a href="${data.articles[i].url}"><img src="${data.articles[i].urlToImage}" alt="Image Indisponible"></a>
-        <div>${data.articles[i].description}</div>
-        <p>${(data.articles[i].author == null) ? "Un illustre inconnu" : data.articles[i].author}</p>`
-                setTimeout(() => {
-                    newArticle.style.opacity = "1"
-                }, (200));
-                theMainDiv.append(newArticle)
-            }
-        }
+    if (searchBarNeedAReset) {
+        theMainDiv.innerHTML = `<img src="img/404.jpg" alt="Pas d'articles disponibles avec cette recherche.">`
     }
 
-    else if (whatIsShow == 1) {
+    else {
 
-        for (let i = maxLength; i < maxLength + 3; i++) {
+        for (i; i < maxLength; i++) {
 
-            if (data.articles[i].urlToImage == null) {
-                maxLength = maxLength + 1;
-            }
+            let newArticle = document.createElement("article")
+            newArticle.innerHTML = `<h2>${data.articles[i].title}</h2>
+            <a href="${data.articles[i].url}"><img src="${data.articles[i].urlToImage}" alt="Image Indisponible"></a>
+            <div>${data.articles[i].description}</div>
+            <p>${(data.articles[i].author == null) ? "Un illustre inconnu" : data.articles[i].author}</p>`
 
-            else if (data.articles[i].urlToImage != null) {
-                let newArticle = document.createElement("article")
-                newArticle.innerHTML = `<h2>${data.articles[i].title}</h2>
-        <a href="${data.articles[i].url}"><img src="${data.articles[i].urlToImage}" alt="Image Indisponible"></a>
-        <div>${data.articles[i].description}</div>
-        <p>${(data.articles[i].author == null) ? "Un illustre inconnu" : data.articles[i].author}</p>`
-                setTimeout(() => {
-                    newArticle.style.opacity = "1"
-                }, (200));
-                theMainDiv.append(newArticle)
-            }
+            newArticle.style.opacity = "1";
+
+            theMainDiv.append(newArticle)
+
         }
     }
-
-    else if (whatIsShow == 2) {
-
-        for (let i = maxLength + 3; i < maxLength + 6; i++) {
-
-            if (data.articles[i].urlToImage == null) {
-                maxLength = maxLength + 1;
-            }
-
-            else if (data.articles[i].urlToImage != null) {
-                let newArticle = document.createElement("article")
-                newArticle.innerHTML = `<h2>${data.articles[i].title}</h2>
-        <a href="${data.articles[i].url}"><img src="${data.articles[i].urlToImage}" alt="Image Indisponible"></a>
-        <div>${data.articles[i].description}</div>
-        <p>${(data.articles[i].author == null) ? "Un illustre inconnu" : data.articles[i].author}</p>`
-                setTimeout(() => {
-                    newArticle.style.opacity = "1"
-                }, (200));
-                theMainDiv.append(newArticle)
-            }
-        }
-    }
-
-    else if (whatIsShow == 3) {
-
-        for (let i = maxLength + 6; i < maxLength + 9; i++) {
-
-            if (data.articles[i].urlToImage == null) {
-                maxLength = maxLength + 1;
-            }
-
-            else if (data.articles[i].urlToImage != null) {
-                let newArticle = document.createElement("article")
-                newArticle.innerHTML = `<h2>${data.articles[i].title}</h2>
-        <a href="${data.articles[i].url}"><img src="${data.articles[i].urlToImage}" alt="Image Indisponible"></a>
-        <div>${data.articles[i].description}</div>
-        <p>${(data.articles[i].author == null) ? "Un illustre inconnu" : data.articles[i].author}</p>`
-                setTimeout(() => {
-                    newArticle.style.opacity = "1"
-                }, (200));
-                theMainDiv.append(newArticle)
-            }
-        }
-    }
-
 }
 
 function showMustGoOn() {
@@ -130,20 +69,20 @@ function showMustGoOn() {
 }
 
 function pressRightButton() {
-    if (whatIsShow < 3) {
-        whatIsShow += 1;
+    if (whatIsShown < maxShownArticles) {
+        whatIsShown += 1;
+        maxLength = whatIsShown + 3
         theMainDiv.innerHTML = "";
-        showArticles();
+        showArticles(whatIsShown);
     }
-
-
 }
 
 function pressLeftButton() {
-    if (whatIsShow > 0) {
-        whatIsShow -= 1;
+    if (whatIsShown > 0) {
+        whatIsShown -= 1;
+        maxLength = whatIsShown + 3
         theMainDiv.innerHTML = "";
-        showArticles();
+        showArticles(whatIsShown);
     }
 }
 
@@ -210,12 +149,16 @@ let searchInput = document.querySelector("#searchBar");
 
 //filter on searchBar
 searchInput.addEventListener("input", debounce(() => {
-
+    searchBarNeedAReset = false;
     let filter = searchInput.value;
     currentLanguage = selectLanguage.value;
     currentCategory = selectCategory.value;
     theMainDiv.innerHTML = "";
     updateContent(`https://newsapi.org/v2/top-headlines?category=${currentCategory}&country=${currentLanguage}&sortBy=publishedAt&apiKey=21e825da1415461e9ea84507ccbcb84a&q=${filter}`);
+    if (theMainDiv.innerHTML == "") {
+        theMainDiv.innerHTML = `<img src="img/404.jpg" alt="Pas d'articles disponibles avec cette recherche.">`
+        searchBarNeedAReset = true;
+    }
 }, 1000))
 
 updateContent("https://newsapi.org/v2/top-headlines?country=fr&sortBy=publishedAt&apiKey=21e825da1415461e9ea84507ccbcb84a");

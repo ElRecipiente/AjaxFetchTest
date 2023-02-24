@@ -154,3 +154,9 @@ button#right {
     top: 50%;
     right: 5%;
 }
+
+main>div>img {
+    width: 50%;
+    height: 50%;
+    margin: 0 auto;
+}
